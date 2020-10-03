@@ -1,0 +1,17 @@
+All good so far?
+
+    	  
+# By the way, see instructions_1.txt for comments that describe
+# what the file can possibly contain.
+
+ 
+Draw a line of 3 ^ after 1 space.
+
+Draw a line of 5 % after 2 spaces.
+Draw a line of 8 + after 5 spaces.
+Draw a line of 4 + after 2 spaces.
+All good so far?
+		
+Draw a line of 2 = after 1 space.
+
+

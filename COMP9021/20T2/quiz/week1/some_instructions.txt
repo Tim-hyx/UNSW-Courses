@@ -1,0 +1,20 @@
+Draw a line of 23 * after 6 spaces.
+Draw a line of 8 ( after 3 spaces.
+Draw a line of 6 & after 1 space.
+All good so far?
+Draw a line of 17 ) after 5 spaces.
+Draw a line of 1 + after 9 spaces.
+Draw a line of 14 * after 2 spaces.
+	
+
+Draw a line of 3 # after 5 spaces.
+Draw a line of 3 $ after 9 spaces.
+Draw a line of 4 % after 2 spaces.
+
+
+
+
+
+
+
+

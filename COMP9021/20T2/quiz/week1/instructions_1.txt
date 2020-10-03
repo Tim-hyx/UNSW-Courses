@@ -1,0 +1,15 @@
+# Lines can only be of four kinds:
+# - # Blahblahblah, so a comment, that starts with a hash symbol.
+# - Draw a line of some_strictly_positive_number some_symbol after some_strictly_positive_number space(s).
+# - All good so far?
+# - Blank lines (with nothing but possibly spaces and tabs)
+
+Draw a line of 10 * after 3 spaces.
+Draw a line of 4 _ after 5 spaces.
+     
+All good so far?
+
+    	   
+Draw a line of 5 + after 4 spaces.
+
+
