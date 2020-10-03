@@ -1,0 +1,99 @@
+body {
+    background-color: #faf8ef;
+}
+
+h1 {
+    font-family: Arial, sans-serif;
+    font-size: 100px;
+}
+
+.total-box {
+    width: 900px;
+    height: 900px;
+    margin: 30px;
+    background-color: #bbada0;
+    border-radius: 1%;
+    padding-top: 5px;
+}
+
+.line {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.two {
+    width: 200px;
+    height: 200px;
+    background-color: #eee4da;
+    border-radius: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #776e65;
+}
+
+.four {
+    width: 200px;
+    height: 200px;
+    background-color: #ede0c8;
+    border-radius: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #776e65;
+}
+
+.none {
+    width: 200px;
+    height: 200px;
+    background-color: #cdc1b4;
+    border-radius: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sixteen {
+    width: 200px;
+    height: 200px;
+    background-color: #f59563;
+    border-radius: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.six-four {
+    width: 200px;
+    height: 200px;
+    background-color: #f65e3b;
+    border-radius: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.one-two-eight {
+    width: 200px;
+    height: 200px;
+    background-color: #edcf72;
+    border-radius: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.eight {
+    width: 200px;
+    height: 200px;
+    background-color: #f2b179;
+    border-radius: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}

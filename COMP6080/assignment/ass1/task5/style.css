@@ -1,0 +1,255 @@
+body {
+    background-color: #f0f3f3;
+    font-family: Arial, sans-serif;
+}
+
+.box {
+    max-width: 1696px;
+    max-height: 1236px;
+    min-width: 595px;
+    min-height: 1094px;
+    padding: 0 7.5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-box {
+    padding-top: 2%;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    position: relative;
+    background-color: white;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 15%;
+}
+
+.text {
+    padding: 0.2% 1%;
+}
+
+.white {
+    font-size: 0.7em;
+    margin-left: 0.2%;
+    display: flex;
+    align-items: center;
+    border-radius: 10%;
+    color: black;
+    border: solid;
+    padding: 0.2% 1%;
+    margin-right: 4px;
+}
+
+.pink {
+    padding: 0.2% 1%;
+    font-size: 0.7em;
+    margin-left: 0.2%;
+    display: flex;
+    align-items: center;
+    border-radius: 10%;
+    border: solid;
+    border: #ef5185;
+    background-color: #ef5185;
+    color: white;
+    text-align: center;
+}
+
+.column-box {
+    text-align: center;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-weight: bold;
+    color: #353750;
+    font-size: 2.5em;
+}
+
+.small-title {
+    color: gray;
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 0.8em;
+}
+
+.pink-box {
+    background-color: #ef5185;
+    border-radius: 10%;
+    color: white;
+    padding: 13px 23px;
+    margin-top: 28px;
+    margin-right: 10px;
+    margin-bottom: 5%;
+    border: #ef5185;
+    display: flex;
+    align-items: center;
+}
+
+.white-box {
+    border-radius: 10%;
+    border: solid;
+    padding: 13px 23px;
+    margin-top: 28px;
+    margin-right: 10px;
+    margin-bottom: 5%;
+    display: flex;
+    align-items: center;
+}
+
+.left {
+    float: left;
+    margin-top: -10%;
+    width: 20%;
+}
+
+.right {
+    margin-top: -29%;
+    width: 20%;
+    margin-left: 80%;
+}
+
+.bottom-box {
+    background-color: #eaf5f5;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.second-title {
+    font-size: 1.8em;
+    margin: 5% 0;
+}
+
+.card {
+    width: 100%;
+    margin-top: 5%;
+    margin-left: 20%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.whiteboard {
+    width: 250px;
+    height: 300px;
+    background-color: white;
+    margin-left: 1%;
+}
+
+.set {
+    margin-top: -60px;
+    margin-left: 150px;
+}
+
+.photo {
+    border-radius: 50%;
+    margin-left: 90px;
+    margin-top: 20px;
+}
+
+.photo1 {
+    border-radius: 50%;
+    margin-left: 90px;
+    margin-top: -35px;
+}
+
+.name {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.position {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
+    color: #ef5185;
+    margin-bottom: 20px;
+}
+
+.job {
+    width: 200px;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+}
+
+.ability {
+    background-color: #d7eff1;
+    font-size: 10px;
+    color: #a0c0be;
+    font-weight: bold;
+    border-radius: 9999px;
+    text-align: center;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+
+.ability1 {
+    background-color: #d7eff1;
+    font-size: 10px;
+    color: #a0c0be;
+    font-weight: bold;
+    border-radius: 9999px;
+    text-align: center;
+    padding: 5px 10px;
+    margin: auto;
+    width: 100px;
+}
+
+.ability2 {
+    background-color: #d7eff1;
+    font-size: 10px;
+    color: #a0c0be;
+    font-weight: bold;
+    border-radius: 9999px;
+    text-align: center;
+    padding: 5px 10px;
+    margin: auto;
+    width: 150px;
+}
+
+.ability3 {
+    background-color: #d7eff1;
+    font-size: 10px;
+    color: #a0c0be;
+    font-weight: bold;
+    border-radius: 9999px;
+    text-align: center;
+    padding: 5px 10px;
+    margin: auto;
+    width: 80px;
+}
+
+.pink-box:active {
+    opacity: 0.7;
+}
+
+.white-box:active {
+    background-color: black;
+}
+
+@media screen and (max-width: 595px) {
+    .disappear {
+        visibility: hidden;
+    }
+
+    .set {
+        visibility: hidden;
+    }
+}
