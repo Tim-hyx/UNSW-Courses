@@ -1,0 +1,28 @@
+h1 {
+	font-family: Arial, sans-serif;
+	font-size: 500%;
+	text-align: center;
+	letter-spacing: -5px;
+}
+
+img {
+	width: 480px;
+	height: 320px;
+}
+
+.pictures {
+	display: flex;
+	justify-content: space-between;
+}
+
+.Cities {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.texts {
+	font-family: Arial, sans-serif;
+	font-size: 150%;
+	font-style: italic;
+}

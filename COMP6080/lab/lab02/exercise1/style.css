@@ -1,0 +1,128 @@
+.total {
+    display: flex;
+    justify-content: space-around;
+}
+
+.left {
+    width: 50%;
+    height: 910px;
+    border-right: 3px solid;
+    border-right-color: #eeece9;
+    margin-top: 20px;
+}
+
+img {
+    display: flex;
+    margin: auto;
+    width: 660px;
+    height: 430px;
+}
+
+.oceans {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #ef8672;
+    text-align: center;
+    font-family: Garamond, serif;
+    font-size: 25px;
+}
+
+.title-box {
+    display: flex;
+    margin: auto;
+    width: 500px;
+    height: 200px;
+    font-family: Garamond, serif;
+    font-size: 40px;
+    text-align: center;
+}
+
+.text {
+    display: flex;
+    margin: auto;
+    width: 700px;
+    height: 200px;
+    font-family: Garamond, serif;
+    font-size: 30px;
+    text-align: center;
+}
+
+.author {
+    margin-top: 10px;
+    text-align: center;
+    font-family: Garamond, serif;
+    font-size: 20px;
+}
+
+.by {
+    font-style: italic;
+}
+
+.right {
+    width: 50%;
+    height: 910px;
+    margin-top: 20px;
+}
+
+.digest {
+    width: 150px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    line-height: 50px;
+    text-align: center;
+    font-family: Garamond, serif;
+    margin-left: 60px;
+    font-weight: bold;
+}
+
+.text-box1 {
+    width: 800px;
+    height: 180px;
+    margin-top: 30px;
+    margin-left: 60px;
+}
+
+.text-box2 {
+    width: 800px;
+    height: 260px;
+    margin-top: 30px;
+    margin-left: 60px;
+}
+
+.text-box3 {
+    width: 800px;
+    height: 250px;
+    margin-top: 30px;
+    margin-left: 60px;
+}
+
+.title {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 29px;
+}
+
+.content {
+    font-family: Garamond, serif;
+    font-size: 27px;
+    line-height: 30px;
+    margin-top: 10px;
+}
+
+.more {
+    font-family: Garamond, serif;
+    font-size: 22px;
+    color: #fd7f7b;
+    font-weight: bold;
+}
+
+.archive {
+    font-family: Garamond, serif;
+    font-size: 24px;
+    color: #c5c3be;
+    font-style: italic;
+    position: relative;
+    top: -40px;
+    left: 800px;
+}

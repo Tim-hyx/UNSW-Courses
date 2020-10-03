@@ -1,0 +1,99 @@
+img {
+    position: relative;
+    top: 200px;
+    left: 120px;
+}
+
+.staff-box {
+    position: relative;
+    top: 130px;
+    left: 200px;
+    z-index: 10;
+    width: 650px;
+    height: 450px;
+    background-color: #f2f2f2;
+}
+
+.box-title {
+    font-weight: bold;
+    font-family: Helvetica, sans-serif;
+    font-size: 50px;
+    margin-left: 40px;
+    padding-top: 50px;
+}
+
+.staff-text {
+    width: 550px;
+    height: 200px;
+    font-family: Helvetica, sans-serif;
+    font-size: 26px;
+    margin-left: 40px;
+    margin-top: 20px;
+    line-height: 50px;
+}
+
+span {
+    font-weight: bold;
+}
+
+.learn-more {
+    font-family: Helvetica, sans-serif;
+    font-size: 26px;
+    font-weight: bold;
+    margin-left: 400px;
+    margin-top: 50px;
+}
+
+.title {
+    font-family: Helvetica, sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: 500px;
+    margin-left: 50px;
+    margin-bottom: 150px;
+}
+
+.box {
+    width: 650px;
+    height: 450px;
+    background-color: #f2f2f2;
+    margin-top: 100px;
+    margin-left: 150px;
+}
+
+.box1 {
+    width: 650px;
+    height: 500px;
+    background-color: #f2f2f2;
+    margin-top: 100px;
+    margin-left: 150px;
+}
+
+.name1 {
+    font-family: Helvetica, sans-serif;
+    font-size: 26px;
+    margin-left: 300px;
+    margin-top: 50px;
+}
+
+.name2 {
+    font-family: Helvetica, sans-serif;
+    font-size: 26px;
+    margin-left: 100px;
+    margin-top: -20px;
+}
+
+.name3 {
+    font-family: Helvetica, sans-serif;
+    font-size: 26px;
+    margin-left: 250px;
+    margin-top: 30px;
+}
+
+.business {
+    font-family: Helvetica, sans-serif;
+    font-size: 26px;
+    margin-top: 20px;
+    margin-left: 420px;
+
+}
