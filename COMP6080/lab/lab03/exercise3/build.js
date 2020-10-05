@@ -1,6 +1,6 @@
 let body = document.getElementById("body");
 let div = document.createElement("div");
-div.style.backgroundColor = "#000000";
+div.style.backgroundColor = "#cccccc";
 body.appendChild(div);
 let a = document.createElement("a");
 a.target = "_blank";
