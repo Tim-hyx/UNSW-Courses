@@ -1,0 +1,282 @@
+/* base styles, feel free to edit */
+html, body {
+    color: #1ec503;
+    background-color: black;
+    height: 100%;
+    font-family: sans-serif;
+}
+
+.banner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: black;
+    min-height: 60px;
+    border-bottom: 1px solid rgba(0, 0, 0, .0975);
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 2%;
+}
+
+footer {
+    border-top: 1px solid rgba(0, 0, 0, .0975);
+    padding: 10px;
+    background-color: black;
+    min-height: 60px;
+    text-align: right;
+}
+
+.banner > *, footer > * {
+    margin: 10px 25px;
+}
+
+.nav {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-item {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: auto;
+    padding: 5px;
+    display: inline;
+    list-style-type: none;
+}
+
+/* Add your styles here */
+.post {
+    max-width: 710px;
+    margin: 31px auto;
+    background-color: black;
+    overflow: hidden;
+}
+
+.post-title {
+    margin-bottom: 11px;
+}
+
+.post-published, .editPost {
+    display: inline;
+}
+
+.post-image {
+    display: block;
+    margin-left: auto;
+    width: 100%;
+    height: 100%;
+    margin-right: auto;
+}
+
+.post-description_text {
+    width: 460px;
+    display: block;
+    word-wrap: break-word;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.post-likes, .post-comments-count {
+    padding: 5px;
+    position: relative;
+    font-weight: bold;
+}
+
+.post-show-comments {
+    padding: 2px;
+    position: relative;
+    font-weight: bold;
+}
+
+.post-hide-comments {
+    padding: 2px;
+    position: relative;
+    left: 130px;
+    font-weight: bold;
+}
+
+.comment-box {
+    position: relative;
+    width: 98%;
+    display: block;
+    box-sizing: border-box;
+    height: 30px;
+    padding: 6px;
+    margin: 10px 20px;
+}
+
+.post-comment {
+    margin: 11px 31px;
+    word-wrap: break-word;
+    width: 460px;
+    position: relative;
+    display: block;
+}
+
+.loginContainer {
+    width: 250px;
+    height: 300px;
+    margin: auto;
+}
+
+.registration-field, .change-field, .login-field {
+    padding: 10px;
+    margin: 10px 20px;
+    display: block;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.regcontainer {
+    width: 250px;
+    height: 550px;
+    margin: auto;
+}
+
+.navigation-elements {
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 21px;
+    padding: 21px;
+}
+
+.navigation-bar, .user-Profile-Display {
+    text-align: center;
+}
+
+.followUserInput {
+    width: 98%;
+    padding: 11px;
+    margin: 10px 20px;
+    display: block;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.followConfirmation-Btn, .search-Username-Btn, .confirm-post, .confirm-delete-post {
+    padding: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.upload-file {
+    padding: 20px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#submitRegBtn {
+    margin-left: 30px;
+}
+
+.submit-Btn {
+    padding: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 50px;
+}
+
+.scrollBox {
+    width: 200px;
+    border: 1px solid #1ec503;
+    font-family: sans-serif;
+    overflow: auto;
+    align-items: center;
+    padding: 5px;
+}
+
+.scrollBoxContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.user-Profile-Information {
+    display: inline-block;
+    padding: 21px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.description-field {
+    box-sizing: border-box;
+    align-items: center;
+    width: 98%;
+    display: block;
+    padding: 11px;
+    margin: 10px 20px;
+}
+
+.post-text-box {
+    width: 450px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+#editProfile {
+    cursor: pointer;
+}
+
+.center-div {
+    background-color: black;
+    text-align: center;
+    max-width: 610px;
+    overflow: hidden;
+    margin: 31px auto;
+}
+
+.edit-post {
+    cursor: pointer;
+    display: inline-block;
+    padding-left: 21px;
+    font-weight: bold;
+}
+
+.updateProfile {
+    width: 200px;
+    height: 400px;
+    margin: auto;
+}
+
+button {
+    cursor: pointer;
+    width: 100px;
+    color: white;
+    background-color: #1ec503;
+    padding: 10px 0;
+    margin: 13px 11px;
+}
+
+button:hover {
+    opacity: 0.7;
+}
+
+@media screen and (max-width: 500px) {
+    .post {
+        border: none;
+        border-bottom: 10px solid #000000;
+        border-top: 10px solid #000000;
+        max-height: 60vh;
+    }
+
+    .post-image {
+        max-width: 100%;
+        max-height: 60vh;
+    }
+
+    #feed > * {
+        flex: 1 1 45%;
+        height: auto;
+    }
+}
