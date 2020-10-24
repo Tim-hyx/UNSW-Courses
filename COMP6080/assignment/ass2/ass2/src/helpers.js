@@ -755,8 +755,6 @@ function follow(api, mainRole) {
             error.style.color = 'red';
             error.textContent = 'Cannot Follow Yourself.';
             placeHolderText.after(error);
-
-            // showErrorAfter(placeHolderText, 'Cannot Follow Yourself.', 'followError');
         }
     });
 }
