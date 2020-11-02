@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 6</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <form id="user-form">
+        <table>
+            <tr>
+                <td>
+                    <label for="first-name">First Name</label>
+                </td>
+                <td>
+                    <input type="text" id="first-name" name="first-name" onblur="handleChange()">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="last-name">Last Name</label>
+                </td>
+                <td>
+                    <input type="text" id="last-name" name="last-name" onblur="handleChange()">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="date-of-birth">Date of birth</label>
+                </td>
+                <td>
+                    <input type="text" id="date-of-birth" name="date-of-birth" onblur="handleChange()">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="animal">Favourite animal</label>
+                </td>
+                <td>
+                    <select id="animal" name="animal" onchange="handleChange()">
+                        <option value="dog">Dog</option>
+                        <option value="puppy">Puppy</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Cities lives in
+                </td>
+                <td>
+                    <div class="cities-picker" onchange="handleChange()">
+                        <div>
+                            <input type="checkbox" id="sydney" name="sydney" value="Sydney">
+                            <label for="sydney">Sydney</label> 
+                        </div>
+                        <div>
+                            <input type="checkbox" id="melbourne" name="melbourne" value="Melbourne">
+                            <label for="melbourne">Melbourne</label> 
+                        </div>
+                        <div>
+                            <input type="checkbox" id="adelaide" name="adelaide" value="Adelaide">
+                            <label for="adelaide">Adelaide</label>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <button type="button" id="removeButton">Remove</button>
+        <br /><br />
+        <textarea id="data" name="data" rows="15" cols="60"></textarea>
+    </form>
+    <script src="index.js" defer></script>
+</body>
+</html>

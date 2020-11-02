@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'Gill Sans MT Medium';
+    src: local('Gill Sans MT Medium'), url('fonts/Gill Sans MT Medium.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Gill Sans MT Light';
+    src: local('Gill Sans MT Light'), url('fonts/Gill Sans MT Light.woff') format('woff');
+}
+
+body {
+    font-family: 'Gill Sans MT Medium', 'Gill Sans MT', sans-serif;
+    margin: 4px;
+}
+
+.circle-image {
+    border-radius: 50%;
+}
+
+.giraffe-head {
+    border: 1px solid rgb(222, 222, 222);
+    margin-top: 20px;
+}
+
+#content-container {
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-start;
+    padding: 33px 50px 41px 50px;
+    border: 1px solid rgb(222, 222, 222);
+}
+
+#giraffe-facts span {
+    text-transform: uppercase;
+    font-family: 'Gill Sans MT Medium';
+    font-weight: bold;
+    font-size: 14pt;
+    letter-spacing: 4px;
+}
+
+#giraffe-facts span::after {
+    content: ": ";
+}
+
+#giraffe-facts {
+    font-family: 'Gill Sans MT Light';
+    font-size: 20pt;
+    line-height: 18px;
+}
+
+img#giraffe-person {
+    height: 180px;
+    width: 240px;
+}
