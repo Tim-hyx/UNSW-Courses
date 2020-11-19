@@ -89,6 +89,11 @@ class Thread:
                     return 0, fp.read()
         return 1, None
 
+    def deleteFile(self):
+        os.remove(self.threadTitle)
+        for file in self.threadFileList:
+            os.remove(self.threadTitle + '-' + file.fileName)
+
     def uploadFile_confirm(self, username, filename):
         for file in self.threadFileList:
             if file.fileName == filename:
@@ -132,8 +137,8 @@ class ThreadManager:
             if self.threadList[thread_title].threadAuthor != username:
                 return 2
             else:
+                self.threadList[thread_title].deleteFile()
                 del self.threadList[thread_title]
-                os.remove(thread_title)
                 return 0
 
     def listThreads(self, username):
@@ -481,6 +486,11 @@ class Server:
         thread.start()
         while True:
             if self.exit:
+                for key, value in self.threadManger.threadList.items():
+                    os.remove(key)
+                    for file in value.threadFileList:
+                        os.remove(key + '-' + file.fileName)
+                os.remove('credentials.txt')
                 return
 
 
