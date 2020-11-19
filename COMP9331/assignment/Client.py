@@ -143,7 +143,7 @@ class Client:
                         self.state = self.states.exit
 
     def send(self):
-        tip_tmp = 'Enter one of the following commands: CRT, MSG, DLT, EDT, LST, RDT, UPD, DWN, RMV, XIT, SHT: '
+        commandlist = 'Enter one of the following commands: CRT, MSG, DLT, EDT, LST, RDT, UPD, DWN, RMV, XIT, SHT: '
         while True:
             try:
                 req = dict()
@@ -155,7 +155,7 @@ class Client:
                         if self.needToSendFilename != '':
                             command.append('UPD')
                     else:
-                        input_str = input(tip_tmp)
+                        input_str = input(commandlist)
                         commandIdList = ['ATE', 'CRT', 'MSG', 'DLT', 'EDT', 'LST', 'RDT', 'UPD', 'DWN', 'RMV', 'XIT',
                                          'SHT']
                         split_rst = input_str.split()
