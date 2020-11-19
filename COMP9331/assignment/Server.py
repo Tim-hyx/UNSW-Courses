@@ -33,13 +33,6 @@ class Thread:
             fp.write(self.threadAuthor)
             fp.write('\n')
 
-    def postMessage(self, message, username):
-        msg = Message(username, message)
-        self.threadMessageList.append(msg)
-        self.threadContent.append(msg)
-        self.writeToFile()
-        return 0
-
     def readThread(self, username):
         content = ''
         i = 1
@@ -50,17 +43,12 @@ class Thread:
             content += line.toString() + '\n'
         return 0, content
 
-    def deleteMessage(self, message_number, username):
-        if message_number > len(self.threadMessageList) or message_number < 1:
-            return 2
-        else:
-            if self.threadMessageList[message_number - 1].messageAuthor != username:
-                return 1
-            else:
-                self.threadContent.remove(self.threadMessageList[message_number - 1])
-                self.threadMessageList.remove(self.threadMessageList[message_number - 1])
-                self.writeToFile()
-                return 0
+    def postMessage(self, message, username):
+        msg = Message(username, message)
+        self.threadMessageList.append(msg)
+        self.threadContent.append(msg)
+        self.writeToFile()
+        return 0
 
     def editMessage(self, message_number, message, username):
         if message_number > len(self.threadMessageList) or message_number < 1:
@@ -82,11 +70,17 @@ class Thread:
             fp.write(file_data)
         return 0
 
-    def uploadFile_confirm(self, username, filename):
-        for file in self.threadFileList:
-            if file.fileName == filename:
+    def deleteMessage(self, message_number, username):
+        if message_number > len(self.threadMessageList) or message_number < 1:
+            return 2
+        else:
+            if self.threadMessageList[message_number - 1].messageAuthor != username:
                 return 1
-        return 0
+            else:
+                self.threadContent.remove(self.threadMessageList[message_number - 1])
+                self.threadMessageList.remove(self.threadMessageList[message_number - 1])
+                self.writeToFile()
+                return 0
 
     def downloadFile(self, username, thread_title, filename):
         for file in self.threadFileList:
@@ -94,6 +88,12 @@ class Thread:
                 with open(thread_title + '-' + filename, 'rb') as fp:
                     return 0, fp.read()
         return 1, None
+
+    def uploadFile_confirm(self, username, filename):
+        for file in self.threadFileList:
+            if file.fileName == filename:
+                return 1
+        return 0
 
     def writeToFile(self):
         with open(self.threadTitle, 'w') as fp:
@@ -125,13 +125,6 @@ class ThreadManager:
             self.threadList[thread_title] = Thread(thread_title, thread_author)
             return 0
 
-    def listThreads(self, username):
-        thread_titles = self.threadList.keys()
-        str = ''
-        for thread in thread_titles:
-            str += thread + '\n'
-        return 0, str
-
     def removeThread(self, thread_title, username):
         if thread_title not in self.threadList:
             return 1
@@ -143,17 +136,12 @@ class ThreadManager:
                 os.remove(thread_title)
                 return 0
 
-    def deleteMessage(self, thread_title, message_number, username):
-        if thread_title not in self.threadList:
-            return 3
-        else:
-            return self.threadList[thread_title].deleteMessage(message_number, username)
-
-    def postMessage(self, thread_title, message, username):
-        if thread_title not in self.threadList:
-            return 1
-        else:
-            return self.threadList[thread_title].postMessage(message, username)
+    def listThreads(self, username):
+        thread_titles = self.threadList.keys()
+        str = ''
+        for thread in thread_titles:
+            str += thread + '\n'
+        return 0, str
 
     def readThread(self, thread_title, username):
         if thread_title not in self.threadList:
@@ -161,23 +149,35 @@ class ThreadManager:
         else:
             return self.threadList[thread_title].readThread(username)
 
-    def editMessage(self, thread_title, message_number, message, username):
-        if thread_title not in self.threadList:
-            return 3
-        else:
-            return self.threadList[thread_title].editMessage(message_number, message, username)
-
     def uploadFile_confirm(self, thread_title, username, filename):
         if thread_title not in self.threadList:
             return 2
         else:
             return self.threadList[thread_title].uploadFile_confirm(username, filename)
 
+    def postMessage(self, thread_title, message, username):
+        if thread_title not in self.threadList:
+            return 1
+        else:
+            return self.threadList[thread_title].postMessage(message, username)
+
+    def deleteMessage(self, thread_title, message_number, username):
+        if thread_title not in self.threadList:
+            return 3
+        else:
+            return self.threadList[thread_title].deleteMessage(message_number, username)
+
     def downloadFile(self, username, thread_title, file_name):
         if thread_title not in self.threadList:
             return 2, None
         else:
             return self.threadList[thread_title].downloadFile(username, thread_title, file_name)
+
+    def editMessage(self, thread_title, message_number, message, username):
+        if thread_title not in self.threadList:
+            return 3
+        else:
+            return self.threadList[thread_title].editMessage(message_number, message, username)
 
     def uploadFile_send(self, username, thread_title, file_name, file_data):
         if thread_title not in self.threadList:
@@ -221,14 +221,6 @@ class UserManger:
                         username, password = split_rst[0], split_rst[1]
                         self.userList[username] = User(username, password)
 
-    def createNewUser(self, username, password, client):
-        self.userList[username] = User(username, password)
-        self.userLogin(username, password, client)
-        with open(self.userFileName, 'a') as fp:
-            fp.write('\n')
-            fp.write(self.userList[username].toString())
-        return 0
-
     def userLogin(self, username, password, client):
         if username in self.userList:
             user = self.userList[username]
@@ -242,11 +234,13 @@ class UserManger:
                 return 1
         return 3
 
-    def findUserByClient(self, client):
-        for user in self.userList:
-            if self.userList[user].client == client:
-                return self.userList[user]
-        return None
+    def createNewUser(self, username, password, client):
+        self.userList[username] = User(username, password)
+        self.userLogin(username, password, client)
+        with open(self.userFileName, 'a') as fp:
+            fp.write('\n')
+            fp.write(self.userList[username].toString())
+        return 0
 
     def userLogout(self, username):
         if username in self.userList:
@@ -257,6 +251,12 @@ class UserManger:
                 user.login = False
                 return 0
         return 2
+
+    def findUserByClient(self, client):
+        for user in self.userList:
+            if self.userList[user].client == client:
+                return self.userList[user]
+        return None
 
     def userClientClose(self, client):
         user = self.findUserByClient(client)
@@ -288,9 +288,6 @@ class Server:
                 if user.login:
                     self.userManger.userLogout(user.username)
             return 0
-
-    def sendToClient(self, msg, client):
-        client.sendall(str(msg).encode())
 
     def recvFromClient(self, client):
         username = ''
@@ -344,16 +341,6 @@ class Server:
                         print(f'Thread {thread_title} exists')
                     else:
                         print(f'Thread {thread_title} created')
-                # post message
-                elif req['id'] == 'MSG':
-                    res['id'], res['stage'], username, thread_title, message = 'MSG', 1, req['username'], req[
-                        'threadtitle'], req['message']
-                    return_code = self.threadManger.postMessage(thread_title, message, username)
-                    res['returncode'], res['threadtitle'] = return_code, thread_title
-                    if return_code != 0:
-                        print(f'Thread {thread_title} not existed')
-                    else:
-                        print(f'Message posted to {thread_title} thread')
                 # read thread
                 elif req['id'] == 'RDT':
                     res['id'], res['stage'], username, thread_title = 'RDT', 1, req['username'], req['threadtitle']
@@ -363,6 +350,10 @@ class Server:
                         print('Incorrect thread specified')
                     else:
                         print(f"Thread {res['threadtitle']} read")
+                # list threads
+                elif req['id'] == 'LST':
+                    res['id'], res['stage'], username = 'LST', 1, req['username']
+                    res['returncode'], res['content'] = self.threadManger.listThreads(username)
                 # Delete message
                 elif req['id'] == 'DLT':
                     res['id'], res['stage'], username, thread_title, message_number = 'DLT', 1, req['username'], req[
@@ -377,25 +368,6 @@ class Server:
                         print('Message number not exist')
                     elif res['returncode'] == 1:
                         print('Message cannot be deleted')
-                # list threads
-                elif req['id'] == 'LST':
-                    res['id'], res['stage'], username = 'LST', 1, req['username']
-                    res['returncode'], res['content'] = self.threadManger.listThreads(username)
-                # edit message
-                elif req['id'] == 'EDT':
-                    res['id'], res['stage'], res[
-                        'threadtitle'], username, thread_title, message_number, message = 'EDT', 1, req['threadtitle'], \
-                                                                                          req['username'], req[
-                                                                                              'threadtitle'], req[
-                                                                                              'messagenumber'], req[
-                                                                                              'message']
-                    res['returncode'] = self.threadManger.editMessage(thread_title, message_number, message, username)
-                    if res['returncode'] == 0:
-                        print('Message has been edited')
-                    elif res['returncode'] == 2:
-                        print('Message number not exist')
-                    elif res['returncode'] == 1:
-                        print('Message cannot be edited')
                 # remove thread
                 elif req['id'] == 'RMV':
                     res['id'], res['stage'], username, thread_title, res['threadtitle'] = 'RMV', 1, req['username'], \
@@ -408,6 +380,16 @@ class Server:
                         print(f"Thread {res['threadtitle']} cannot be removed")
                     elif res['returncode'] == 1:
                         print(f"Thread {res['threadtitle']} not exists")
+                # post message
+                elif req['id'] == 'MSG':
+                    res['id'], res['stage'], username, thread_title, message = 'MSG', 1, req['username'], req[
+                        'threadtitle'], req['message']
+                    return_code = self.threadManger.postMessage(thread_title, message, username)
+                    res['returncode'], res['threadtitle'] = return_code, thread_title
+                    if return_code != 0:
+                        print(f'Thread {thread_title} not existed')
+                    else:
+                        print(f'Message posted to {thread_title} thread')
                 # upload file
                 elif req['id'] == 'UPD':
                     res['id'], username, thread_title, file_name = 'UPD', req['username'], req['threadtitle'], req[
@@ -425,6 +407,22 @@ class Server:
                         res['returncode'] = self.threadManger.uploadFile_send(username, thread_title, file_name,
                                                                               file_data)
                         print(f"{res['username']} uploaded file {res['filename']} to {res['threadtitle']} thread")
+                # edit message
+                elif req['id'] == 'EDT':
+                    res['id'], res['stage'], res[
+                        'threadtitle'], username, thread_title, message_number, message = 'EDT', 1, req['threadtitle'], \
+                                                                                          req['username'], req[
+                                                                                              'threadtitle'], req[
+                                                                                              'messagenumber'], req[
+                                                                                              'message']
+                    res['returncode'] = self.threadManger.editMessage(thread_title, message_number, message,
+                                                                      username)
+                    if res['returncode'] == 0:
+                        print('Message has been edited')
+                    elif res['returncode'] == 2:
+                        print('Message number not exist')
+                    elif res['returncode'] == 1:
+                        print('Message cannot be edited')
                 # download file
                 elif req['id'] == 'DWN':
                     res['id'], username, thread_title, file_name = 'DWN', req['username'], req['threadtitle'], req[
@@ -464,7 +462,7 @@ class Server:
                             if c != client:
                                 c.sendall(str(res).encode())
                         self.exit = True
-                self.sendToClient(res, client)
+                client.sendall(str(res).encode())
 
     def acceptLoop(self):
         self.serverSocket.listen(20)
