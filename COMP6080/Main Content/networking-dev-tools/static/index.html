@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Classroom Dashboard</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css"/>
+    <link rel="stylesheet" href="index.css"/>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="#">✏️ Classroom</a>
+    </nav>
+    <main>
+    <h1>Marks</h1>
+    <hr>
+    <div class="marks">
+      <div class="card border-light mb-3" style="max-width: 20rem;">
+        <div class="card-header">Exam 1 Marks</div>
+        <div class="card-body center">
+          <canvas id="exam-1-marks" width="225" height="225"></canvas>
+        </div>
+      </div>
+      <div class="card border-light mb-3" style="max-width: 20rem;">
+        <div class="card-header">Exam 2 Marks</div>
+        <div class="card-body center">
+          <canvas id="exam-2-marks" width="225" height="225"></canvas>
+        </div>
+      </div>
+      <div class="card border-light mb-3" style="max-width: 20rem;">
+        <div class="card-header">Assignment 1 Marks</div>
+        <div class="card-body center">
+          <canvas id="ass-1-marks" width="225" height="225"></canvas>
+        </div>
+      </div>
+    </div>
+    <h1>Ocotober Attendence</h1>
+    <hr>
+    <canvas id="attendence" width="900" height="300"></canvas>
+    <h1> Students</h1>
+    <hr>
+    <div id="pencil">✏️</div>
+    <button type="button" class="btn btn-info" id="refresh-students">Refresh</button>
+    <div class="alert alert-danger" id="table-error">
+      <strong>Oh snap!</strong> Something went wrong, try again later.
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Average</th>
+        </tr>
+      </thead>
+      <tbody id="students">
+      </tbody>
+      </table>
+    </main>
+    <div id="loading-screen">
+      <h1>Loading...</h1>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

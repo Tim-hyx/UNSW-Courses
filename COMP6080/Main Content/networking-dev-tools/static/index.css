@@ -1,0 +1,73 @@
+
+html, body {
+    margin: 0;
+}
+main {
+   padding: 32px 64px;
+}
+.marks {
+   width: 100%;
+   display: grid;
+   grid-template-columns: repeat(3, auto);
+   grid-template-rows: repeat(auto-fit, 400px);
+   grid-gap: 8px;
+   margin-bottom: 32px;
+}
+
+.center {
+   display: grid;
+   place-items: center;
+}
+
+#loading-screen {
+   width: 100vw;
+   height: 100vh;
+   left: 0;
+   top: 0;
+   background: #2c3e50;
+   display: grid;
+   place-items: center;
+   color: white;
+   text-align: center;
+   position: fixed;
+}
+
+button {
+   margin-bottom: 32px;
+}
+table {
+   margin-top: 32px;
+}
+
+#table-error {
+   display: none;
+}
+
+@keyframes spin { 
+   from { 
+       transform: rotate(0deg); 
+   }
+   to { 
+       transform: rotate(360deg); 
+   }
+}
+
+#pencil {
+   width: 36px;
+   height: 36px;
+   font-size: 24px;
+   margin-left: 0px;
+}
+
+
+#pencil.write {
+   animation-name: spin;
+   animation-duration: 1s;
+   animation-iteration-count: infinite;
+}
+
+@media (prefers-color-scheme: dark) {
+   body {
+      background: black;
+   }
+ }
