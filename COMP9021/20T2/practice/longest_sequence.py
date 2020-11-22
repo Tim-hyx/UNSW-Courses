@@ -1,18 +1,29 @@
-# Prompts the user for a string w of lowercase letters and outputs the
-# longest sequence of consecutive letters that occur in w,
-# but with possibly other letters in between, starting as close
-# as possible to the beginning of w.
+# Written by Eric Martin for COMP9021
 
 
 import sys
 
-# Insert your code here
-word = input('Please input a string of lowercase letters: ')
-d = {}
-for x in word:
-    if x in d:
-        d[chr(ord(x) + 1)] = d[x] + x
-    else:
-        d[chr(ord(x) + 1)] = x
-print(f'The solution is: {max(d.values(), key=len)}')
 
+word = input('Please input a string of lowercase letters: ')
+if not all(c.islower() for c in word):
+    print('Incorrect input.')
+    sys.exit()
+word = [ord(c) for c in word]
+longest_length = 0
+start = None
+current_start = 0
+while current_start < len(word) - longest_length:
+    current_length = 1
+    last_in_sequence = word[current_start]
+    for i in range(current_start + 1, len(word)):
+        if word[i] - last_in_sequence == 1:
+            current_length += 1
+            last_in_sequence = word[i]
+    if current_length > longest_length:
+        longest_length = current_length
+        start = current_start
+    current_start += 1
+print('The solution is:', ''.join(chr(word[start] + i)
+                                      for i in range(longest_length)
+                                 )
+     )

@@ -1,3 +1,6 @@
+# Written by Eric Martin for COMP9021
+
+
 import sys
 
 
@@ -10,8 +13,8 @@ def solve(digits, desired_sum):
     # get desired_sum - d from the remaining digits, or do not take
     # the last digit and try to get desired_sum from the remaining
     # digits.
-    return solve(digits // 10, desired_sum) + solve(digits // 10, desired_sum - digits % 10)
-
+    return solve(digits // 10, desired_sum)\
+           + solve(digits // 10, desired_sum - digits % 10)
 
 try:
     digits = int(input('Input a natural number for the available digits: '))
@@ -34,4 +37,3 @@ elif nb_of_solutions == 1:
     print('There is a unique solution.')
 else:
     print('There are', nb_of_solutions, 'solutions.')
-
