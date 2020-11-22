@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Page</title>
+    <style type="text/css">
+      @font-face {
+        font-family: luckiestGuy;
+        src: url(LuckiestGuy-Regular.ttf);
+      }
+      body, button, input, textarea {
+        font-family: luckiestGuy;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Please invite your friends to join CSE</h1>
+
+    <form action="" method="get">
+      <div>
+        <h3>Welcome message</h3>
+        <textarea name="welcomeMessage" id="welcomeMessage"></textarea>
+      </div>
+
+      <div id="emailList">
+        <div><span>Email Address: </span><input type="text" /></div>
+        <div><span>Email Address: </span><input type="text" /></div>
+      </div>
+      <button onClick="addTwoEmails();" id="addMoreEmail">Add More</button>
+      <input type="submit" value="Invite" />
+    </form>
+    <script type="text/javascript">
+      const moreEmails = () => {
+        const emailDiv = document.createElement('div');
+        const emailSpanText = document.createElement('span')
+        emailSpanText.innerText = 'Email Address: ';
+        const emailInput = document.createElement('input');
+        emailInput.setAttribute('type', 'text');
+
+        emailDiv.appendChild(emailSpanText);
+        emailDiv.appendChild(emailInput);
+
+        document.getElementById('emailList').appendChild(emailDiv);
+      };
+      const addTwoEmails = () => {
+        moreEmails();
+        moreEmails();
+      };
+      document.getElementById('welcomeMessage').addEventListener('focus', (event) => {
+        document.getElementById('welcomeMessage').style.backgroundColor = 'white';
+      });
+      document.getElementById('welcomeMessage').addEventListener('blur', (event) => {
+        if (document.getElementById('welcomeMessage').value === '') {
+          document.getElementById('welcomeMessage').style.backgroundColor = 'red';
+        }
+      });
+    </script>
+  </body>
+</html>
