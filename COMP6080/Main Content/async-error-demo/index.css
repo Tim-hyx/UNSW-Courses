@@ -1,0 +1,67 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+ }
+
+ p {
+   font-family: inherit;
+ }
+
+ main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 800px;
+    width: 80%;
+    margin: 50px auto;
+ }
+
+ pre, code {
+    text-align: left;
+ }
+
+ h2 {
+    color: #555;
+ }
+
+ /* To override some of the styles of bootstrap */
+.board {
+  width: 100%;
+  margin-top: 64px;
+  height: 500px;
+  display: flex;
+}
+.board > * {
+  height: 100%;
+}
+.board .orange, .board .blue {
+  width: 30%;
+  background: #EBEBEB;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  border-radius: 16px;
+}
+button {
+  margin-top: 16px;
+  width: 100%;
+}
+.board .bar {
+  width: calc(100% - 24px);
+  height: 16px;
+  border-radius: 12px;
+  margin: 2px 8px;
+}
+.board .orange .bar {
+  background: #f0ad4e;
+}
+.board .blue .bar {
+  background: #17a2b8;
+}
+.board .middle {
+  width: 40%;
+}

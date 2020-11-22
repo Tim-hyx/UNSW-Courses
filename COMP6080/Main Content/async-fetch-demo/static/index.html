@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Tlog (Text Vlog)</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="index.css"/>
+  </head>
+<body>
+  <main style="text-align: center">
+    <h1>Tlog</h1>
+    <hr>
+    <h4>
+      Type in a topic (like food) to see posts about it!
+    </h4>
+        <div id="dialog" class="alert">
+      <strong>Woah!</strong>
+      <span id="dialog-msg"></span>
+    </div>
+    <br>
+    <div class="row">
+      <input type="text" id="search-topic" placeholder="Topic" class="form-control form-control-lg"/>
+      <button id="search" type="button" class="btn btn-primary">Search</button>
+    </div>
+    <br><br>
+    <div class="results"></div>
+    <hr>
+    <div class="row">
+      <input type="text" id="topic" placeholder="Topic" class="form-control form-control-lg"/>
+      <input type="text" id="text" placeholder="Post" class="form-control form-control-lg"/>
+      <button id="submit" type="button" class="btn btn-primary">Submit</button>
+    </div>
+    <script src="index.js"></script>
+  </main>
+</body>
+</html>
