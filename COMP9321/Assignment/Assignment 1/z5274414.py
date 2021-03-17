@@ -248,11 +248,11 @@ def question_6(df2):
     df6.apply(lambda x: non_population(x, population_list, city_list), axis=1)
     copy_population = population_list.copy()
     copy_population.sort(reverse=True)
-    cities_lst = [city_list[population_list.index(i)] for i in copy_population[0:5]]
-    lst = cities_lst
+    for i in copy_population[0:5]:
+        cities_lst.append(population_list.index(i))
     #################################################
     log("QUESTION 6", output_df=None, other=cities_lst)
-    return lst
+    return cities_lst
 
 
 def question_7(df2):
