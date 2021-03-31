@@ -1,6 +1,7 @@
 import urllib.request as req
 import json, sqlite3, os, time
-from flask import Flask, request
+import matplotlib.pyplot as plt
+from flask import Flask, request, send_file
 from flask_restx import Resource, Api, fields
 from math import ceil
 
@@ -36,7 +37,6 @@ app = Flask(__name__)
 api = Api(app, title="TV Show", description="API for TV Show")
 
 TV_show_model = api.model('TV Show', {
-    "id": fields.Integer,
     "tvmaze_id": fields.Integer,
     "last_update": fields.String,
     "name": fields.String,
@@ -390,8 +390,8 @@ class SingleRoute(Resource):
 
 
 parser1 = api.parser()
-parser1.add_argument('format', type=str, help='For Q5 only', location='args')
-parser1.add_argument('by', type=str, help='For Q5 only', location='args')
+parser1.add_argument('format', type=str, help='image or json only', location='args')
+parser1.add_argument('by', type=str, help='For Q6 only', location='args')
 
 
 @api.route("/tv-show/statistics")
@@ -399,9 +399,62 @@ parser1.add_argument('by', type=str, help='For Q5 only', location='args')
 @api.response(400, 'Bad Request')
 @api.response(404, 'Not Found')
 class SingleRoute(Resource):
-    @api.doc(parser=parser)
+    @api.doc(parser=parser1)
     def get(self):
-        return {}, 200
+        a = parser1.parse_args()['format']
+        b = parser1.parse_args()['by']
+        filter_dict = {
+            "type": 4,
+            "language": 5,
+            "genres": 6,
+            "status": 7,
+        }
+        con = sqlite3.connect('z5274414.db')
+        cur = con.cursor()
+        query = cur.execute(f"SELECT * FROM TV_Show").fetchall()
+        if a != 'json' and a != 'image':
+            return {"message": "The value not found in data source!"}, 404
+        if b not in filter_dict.keys():
+            return {"message": "The value not found in data source!"}, 404
+        res_list = []
+        for i in range(len(query)):
+            if b != "genres":
+                res_list.append(query[i][filter_dict[b]])
+            else:
+                genres_list = eval(query[i][filter_dict[b]])
+                for j in range(len(genres_list)):
+                    res_list.append(genres_list[j])
+        percentage_list = []
+        count_res = list(set(res_list))
+        for i in count_res:
+            percentage_list.append(res_list.count(i))
+        total = sum(percentage_list)
+        for i in range(len(percentage_list)):
+            percentage_list[i] = percentage_list[i] / total * 100
+        value = {}
+        for i in range(len(count_res)):
+            value[count_res[i]] = percentage_list[i]
+        now = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+        yesterday = now.replace(now[8:10], str(int(now[8:10]) - 1))
+        update_list = []
+        for i in range(len(query)):
+            if yesterday < query[i][2] < now:
+                update_list.append(query[i])
+        con.commit()
+        con.close()
+        if a == 'image':
+            plt.pie(percentage_list, labels=count_res, autopct="%.1f%%")
+            plt.title(
+                f'Total Number of TV shows: {len(query)}, Total Number of TV shows updated in the last 24 hours: {len(update_list)}',
+                size=10)
+            plt.savefig('z5274414.jpg')
+            filename = 'z5274414.jpg'
+            send_file(filename, mimetype='image/jpg')
+        if a == 'json':
+            return {"total": len(query),
+                    "total-updated": len(update_list),
+                    "values": value
+                    }, 200
 
 
 if __name__ == '__main__':
