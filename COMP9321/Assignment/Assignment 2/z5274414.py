@@ -449,7 +449,7 @@ class SingleRoute(Resource):
                 size=10)
             plt.savefig('z5274414.jpg')
             filename = 'z5274414.jpg'
-            send_file(filename, mimetype='image/jpg')
+            return send_file(filename, mimetype='image/jpg')
         if a == 'json':
             return {"total": len(query),
                     "total-updated": len(update_list),
