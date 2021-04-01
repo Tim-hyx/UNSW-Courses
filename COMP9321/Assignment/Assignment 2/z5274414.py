@@ -81,9 +81,9 @@ class SingleRoute(Resource):
         con = sqlite3.connect('z5274414.db')
         cur = con.cursor()
         query = cur.execute(f"SELECT * FROM TV_Show WHERE tvmaze_id = {data['id']}").fetchall()
-        if query[0][2] != check_name:
-            return {"message": "The name not found in data source!"}, 404
         if query:
+            if query[0][2] != check_name:
+                return {"message": "The name not found in data source!"}, 404
             return {"id": query[0][0],
                     "last-update": query[0][3],
                     "tvmaze-id": query[0][1],
@@ -198,7 +198,7 @@ class SingleRoute(Resource):
         query = cur.execute(f"SELECT * FROM TV_Show WHERE id = {id}").fetchall()
         if not query:
             return {"message": "The name not found in data source!"}, 404
-        cur.execute(f"UPDATE TV_Show SET WHERE id = {id}")
+        cur.execute(f"DELETE from TV_Show WHERE id = {id}")
         con.commit()
         con.close()
         return {f"message": f"The tv show with id {id} was removed from the database!",
@@ -288,7 +288,10 @@ class SingleRoute(Resource):
         con = sqlite3.connect('z5274414.db')
         cur = con.cursor()
         query = cur.execute(f"SELECT * FROM TV_Show").fetchall()
-        a = a.split(',')
+        if ',' in a:
+            a = a.split(',')
+        else:
+            a = [a]
         a.reverse()
         index_dict = {
             "id": 0,
@@ -304,7 +307,7 @@ class SingleRoute(Resource):
                     query.sort(key=lambda x: x[index_dict[key]])
                 if j == '-':
                     key = a[i][1:]
-                    query.sort(key=lambda x: -x[index_dict[key]], reverse=True)
+                    query.sort(key=lambda x: x[index_dict[key]], reverse=True)
                 break
         all_size = len(query)
         max_page = ceil(all_size / c)
@@ -312,14 +315,16 @@ class SingleRoute(Resource):
             return {"message": "The page not found in data source!"}, 404
         if b < max_page:
             page_list = []
-            for j in range(1, max_page):
-                for i in range((j - 1) * c, j * c):
-                    page_list.append(query[i])
+            for i in range((b - 1) * c, b * c):
+                page_list.append(query[i])
         if b == max_page:
             page_list = query[(b - 1) * c:]
         tv_show = []
         filter_return = d
-        d = d.split(',')
+        if ',' in d:
+            d = d.split(',')
+        else:
+            d = [d]
         filter_dict = {
             "id": 0,
             "tvmaze_id": 1,
@@ -448,8 +453,9 @@ class SingleRoute(Resource):
                 f'Total Number of TV shows: {len(query)}, Total Number of TV shows updated in the last 24 hours: {len(update_list)}',
                 size=10)
             plt.savefig('z5274414.jpg')
+            plt.close()
             filename = 'z5274414.jpg'
-            return send_file(filename, mimetype='image/jpg')
+            return send_file(filename, mimetype='image/jpg', cache_timeout=0)
         if a == 'json':
             return {"total": len(query),
                     "total-updated": len(update_list),
