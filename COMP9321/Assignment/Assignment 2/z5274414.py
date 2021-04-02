@@ -68,19 +68,16 @@ class SingleRoute(Resource):
         for i in range(len(name_check)):
             name_check[i] = name_check[i].capitalize()
         check_name = ' '.join(name_check)
-        print(check_name)
         a = [i for i in check_name]
         for i in range(len(a)):
             if a[i] == ' ':
                 a[i] = '-'
         name_request = ''.join(a)
-        print(name_request)
         resource = req.Request(f'http://api.tvmaze.com/search/shows?q={name_request}')
         data = json.loads(req.urlopen(resource).read())
         if not data:
             return {"message": "The name not found in data source!"}, 404
         data = data[0]['show']
-        print(data['name'])
         if data['name'].upper() != check_name.upper():
             return {"message": "The name not found in data source!"}, 404
         con = sqlite3.connect('z5274414.db')
