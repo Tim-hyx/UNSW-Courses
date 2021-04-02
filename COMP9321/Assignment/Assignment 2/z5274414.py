@@ -68,24 +68,29 @@ class SingleRoute(Resource):
         for i in range(len(name_check)):
             name_check[i] = name_check[i].capitalize()
         check_name = ' '.join(name_check)
+        print(check_name)
         a = [i for i in check_name]
         for i in range(len(a)):
             if a[i] == ' ':
                 a[i] = '-'
         name_request = ''.join(a)
+        print(name_request)
         resource = req.Request(f'http://api.tvmaze.com/search/shows?q={name_request}')
         data = json.loads(req.urlopen(resource).read())
         if not data:
             return {"message": "The name not found in data source!"}, 404
         data = data[0]['show']
+        print(data['name'])
+        if data['name'].upper() != check_name.upper():
+            return {"message": "The name not found in data source!"}, 404
         con = sqlite3.connect('z5274414.db')
         cur = con.cursor()
         query = cur.execute(f"SELECT * FROM TV_Show WHERE tvmaze_id = {data['id']}").fetchall()
         if query:
-            if query[0][2] != check_name:
+            if query[0][3] != check_name:
                 return {"message": "The name not found in data source!"}, 404
             return {"id": query[0][0],
-                    "last-update": query[0][3],
+                    "last-update": query[0][2],
                     "tvmaze-id": query[0][1],
                     "_links": {
                         "self": {
@@ -105,14 +110,14 @@ class SingleRoute(Resource):
             information[11] = str(information[11])
             information[13] = str(information[13])
             information[14] = str(information[14])
-            cur.execute("INSERT INTO TV_Show (tvmaze_id,last_update,name,type,language,genres,status,runtime,"
+            cur.execute("INSERT INTO TV_Show (tvmaze_id,name,last_update,type,language,genres,status,runtime,"
                         "premiered,officialSite,schedule, rating,weight,network,summary) VALUES(?,?,?,?,?,?,?,?,?,?,"
                         "?,?,?,?,?)", information)
             query = cur.execute(f"SELECT * FROM TV_Show WHERE tvmaze_id = {data['id']}").fetchall()
         con.commit()
         con.close()
         return {"id": query[0][0],
-                "last-update": query[0][3],
+                "last-update": query[0][2],
                 "tvmaze-id": query[0][1],
                 "_links": {
                     "self": {
@@ -175,8 +180,8 @@ class SingleRoute(Resource):
         con.close()
         return {"tvmaze_id": query[0][1],
                 "id": query[0][0],
-                "last_update": query[0][3],
-                "name": query[0][2],
+                "last_update": query[0][2],
+                "name": query[0][3],
                 "type": query[0][4],
                 "language": query[0][5],
                 "genres": eval(query[0][6]),
@@ -295,10 +300,10 @@ class SingleRoute(Resource):
         a.reverse()
         index_dict = {
             "id": 0,
-            "name": 4,
-            "runtime": 9,
-            "premiered": 10,
-            "rating-average": 13,
+            "name": 3,
+            "runtime": 8,
+            "premiered": 9,
+            "rating-average": 12,
         }
         for i in range(len(a)):
             for j in a[i]:
