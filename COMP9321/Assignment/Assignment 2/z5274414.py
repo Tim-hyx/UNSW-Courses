@@ -61,7 +61,7 @@ TV_show_model = api.model('TV Show', {
 @api.response(404, 'Not Found')
 @api.response(201, 'Created')
 class SingleRoute(Resource):
-    @api.doc(params={'name': 'name'})
+    @api.doc(params={'name': 'input a TV show name'})
     def post(self):
         name = request.args.get('name')
         name_check = name.split()
@@ -270,10 +270,10 @@ class SingleRoute(Resource):
 
 
 parser = api.parser()
-parser.add_argument('order_by', type=str, help='For Q5 only', location='args')
-parser.add_argument('page', type=int, help='For Q5 only', location='args')
-parser.add_argument('page_size', type=int, help='For Q5 only', location='args')
-parser.add_argument('filter', type=str, help='For Q5 only', location='args')
+parser.add_argument('order_by', type=str, help='For Q5 only, the pagination is +id', location='args')
+parser.add_argument('page', type=int, help='For Q5 only, the pagination is 1', location='args')
+parser.add_argument('page_size', type=int, help='For Q5 only, the pagination is 100', location='args')
+parser.add_argument('filter', type=str, help='For Q5 only, the pagination is id,name', location='args')
 
 
 @api.route("/tv-show/")
@@ -290,6 +290,14 @@ class SingleRoute(Resource):
         con = sqlite3.connect('z5274414.db')
         cur = con.cursor()
         query = cur.execute(f"SELECT * FROM TV_Show").fetchall()
+        if a is None:
+            a = '+id'
+        if b is None:
+            b = 1
+        if c is None:
+            c = 100
+        if d is None:
+            d = 'id,name'
         if ',' in a:
             a = a.split(',')
         else:
@@ -442,9 +450,10 @@ class SingleRoute(Resource):
         for i in range(len(count_res)):
             value[count_res[i]] = percentage_list[i]
         now = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-        yesterday = now.replace(now[8:10], str(int(now[8:10]) - 1))
+        yesterday = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time() - 3600 * 24))
         update_list = []
         for i in range(len(query)):
+            print(query[i][2])
             if yesterday < query[i][2] < now:
                 update_list.append(query[i])
         con.commit()
