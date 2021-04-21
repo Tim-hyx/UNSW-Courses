@@ -22,15 +22,14 @@ def preprocess(training_df):
             cast_dict[cast_df[j]['name']] += 1
     ten_list = sorted(cast_dict.items(), key=lambda item: item[1], reverse=True)[0:10]
     first_ten_list = [ten_list[i][0] for i in range(len(ten_list))]
+    column = [0] * len(training_df['cast'])
     for n in first_ten_list:
-        column = [0] * len(training_df['cast'])
         for i in range(len(training_df['cast'])):
             cast_df = eval(training_df['cast'][i])
             for j in range(len(cast_df)):
                 if cast_df[j]['name'] == n:
-                    column[i] = 1
-        training_df[n] = column
-    training_df = training_df.drop(columns=['cast'], axis=1)
+                    column[i] += 1
+    training_df['cast'] = column
 
     # process the crew
     crew_dict = defaultdict(int)
@@ -40,15 +39,14 @@ def preprocess(training_df):
             crew_dict[crew_df[j]['name']] += 1
     ten_list = sorted(crew_dict.items(), key=lambda item: item[1], reverse=True)[0:10]
     first_ten_list = [ten_list[i][0] for i in range(len(ten_list))]
+    column = [0] * len(training_df['crew'])
     for n in first_ten_list:
-        column = [0] * len(training_df['crew'])
         for i in range(len(training_df['crew'])):
             crew_df = eval(training_df['crew'][i])
             for j in range(len(crew_df)):
                 if crew_df[j]['name'] == n:
-                    column[i] = 1
-        training_df[n] = column
-    training_df = training_df.drop(columns=['crew'], axis=1)
+                    column[i] += 1
+    training_df['crew'] = column
 
     # process the homepage
     homepage_list = []
@@ -76,15 +74,14 @@ def preprocess(training_df):
             production_companies_dict[production_companies_df[j]['name']] += 1
     ten_list = sorted(production_companies_dict.items(), key=lambda item: item[1], reverse=True)[0:10]
     first_ten_list = [ten_list[i][0] for i in range(len(ten_list))]
+    column = [0] * len(training_df['production_companies'])
     for n in first_ten_list:
-        column = [0] * len(training_df['production_companies'])
         for i in range(len(training_df['production_companies'])):
             production_companies_df = eval(training_df['production_companies'][i])
             for j in range(len(production_companies_df)):
                 if production_companies_df[j]['name'] == n:
-                    column[i] = 1
-        training_df[n] = column
-    training_df = training_df.drop(columns=['production_companies'], axis=1)
+                    column[i] += 1
+    training_df['production_companies'] = column
 
     # process the production countries
     countries_list = [len(eval(training_df['production_countries'][i])) for i in
@@ -102,7 +99,6 @@ def preprocess(training_df):
             date_list.append(3)
         else:
             date_list.append(0)
-        # date_list.append(eval(training_df['release_date'][i][0:4]))
     training_df['release_date'] = date_list
 
     # process the spoken language
